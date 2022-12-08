@@ -6,6 +6,8 @@ $email    = "";
 $errors = array(); 
 //IP,username,password,databasename
 $db = mysqli_connect($_CONFIG["db_host"]. ':'. $_CONFIG["db_port"], $_CONFIG["db_username"], $_CONFIG["db_password"], $_CONFIG["db_name"]);
+$getsettings = $db->query("SELECT * FROM settings")->fetch_array();
+
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
@@ -36,7 +38,41 @@ if (isset($_POST['reg_user'])) {
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
-  	header('location: index.php');
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $getsettings['panelurl']. "submitUserCreation");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "{
+        \"adminUser\": \"". $getsettings['paneladmusr_usr'] ."\",
+        \"adminPass\": \"".$getsettings['paneladmusr_pass']."\",
+        \"firstName\": \"".$_POST['name_first']."\",
+        \"lastName\": \"".$_POST['name_last']."\",
+        \"email\": \"".$_POST['email']."\",
+        \"userName\": \"".$_POST['username']."\",
+        \"password\": \"".$_POST['password']."\",
+        \"websitesLimit\": 0,
+        \"selectedACL\": \"user\",
+        \"securityLevel\": \"HIGH\"
+    }");
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      "Content-Type: application/json"
+    ));
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+    if ($response == 'string(57) "{"status": 1, "createStatus": 1, "error_message": "None"}"')
+    {
+      header('location: ../dashboard/index.php');
+    }
+    else
+    {
+      array_push($errors, "Faild to fetch the CyberPanel API");
+    }
   }
 }
 
