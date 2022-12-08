@@ -1,4 +1,7 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('../require/config.php');
 include_once("../require/sql.php");
 include('../scripts/auth/server.php');
@@ -10,7 +13,7 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title><?= $getsettings['appname'];?> | Register</title>
+  <title><?= $getsettings['appname'];?> | Login</title>
   <!-- Favicon -->
   <link href="<?= $getsettings['applogo'];?>" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -53,6 +56,7 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
               <div class="text-center text-muted mb-4">
                 <h3>Sign in with your credentials</h3>
                 &NonBreakingSpace;
+                <?php include('../scripts/auth/errors.php'); ?>
               </div>
               <form role="form" method="POST">
                 <div class="form-group mb-3">
@@ -60,7 +64,7 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" placeholder="Email"  name="email" id="email" type="email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -68,7 +72,7 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" placeholder="Password" name="password" id="password" type="password">
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
@@ -78,7 +82,7 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" name="login_user" id="login_user" class="btn btn-primary my-4">Sign in</button>
                 </div>
               </form>
             </div>

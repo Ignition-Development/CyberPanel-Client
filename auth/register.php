@@ -1,6 +1,7 @@
 <?php 
 include('../require/config.php');
 include_once("../require/sql.php");
+include('../scripts/auth/server.php');
 $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
 ?>
 <!DOCTYPE html>
@@ -50,14 +51,31 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
               <div class="text-center text-muted mb-4">
                 <h3>Fill in with your credentials</h3>
                 &NonBreakingSpace;
+                <?php include('../scripts/auth/errors.php'); ?>
               </div>
-              <form role="form">
+              <form method="POST">
                 <div class="form-group mb-3">     
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Username" type="text">
+                      <input class="form-control" placeholder="Username" id="username" name="username" type="text">
+                    </div>
+                </div>
+                <div class="form-group mb-3">     
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="First name" id="name_first" name="name_first" type="text">
+                    </div>
+                </div>
+                <div class="form-group mb-3">     
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-users"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Last name" id="name_last" name="name_last" type="text">
                     </div>
                 </div>
                 <div class="form-group mb-3">       
@@ -65,7 +83,7 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" placeholder="Email" id="email" name="email" type="email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -73,11 +91,11 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" placeholder="Password" id="password" name="password" type="password">
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Register</button>
+                  <button type="submit" name="reg_user" id="reg_user" class="btn btn-primary my-4">Register</button>
                 </div>
               </form>
             </div>
