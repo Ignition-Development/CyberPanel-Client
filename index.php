@@ -1,4 +1,15 @@
 <?php
+
+
+$filename = 'FIRST_INSTALL';
+
+if (file_exists($filename)) {
+    header('location: install/start.php');
+    die;
+} else {
+    
+}
+
 include('require/config.php');
 include_once("require/sql.php");
 $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();

@@ -1,5 +1,16 @@
 <?php 
-
+session_start();
+if (!isset($_SESSION['email'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: ../auth/login.php');
+    die;
+}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['email']);
+    header("location:../auth/login.php");
+    die;
+}
 include('../require/config.php');
 include_once("../require/sql.php");
 $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
