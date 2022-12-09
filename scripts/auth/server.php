@@ -80,22 +80,8 @@ if (isset($_POST['reg_user'])) {
     ));
 
     $response = curl_exec($curl);
-    echo $response;
     curl_close($curl);
-    if ($response == '{"status": 1, "createStatus": 1, "error_message": "None"}')
-    {
-      header('../dashboard/home.php');
-    }
-    else if($response == '')
-    {
-
-    }
-    else
-    {
-      
-    }
-    echo $response;
-    
+    header('location: ../dashboard/home.php');
   }
 }
 

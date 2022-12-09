@@ -2,7 +2,17 @@
 include('require/config.php');
 include_once("require/sql.php");
 $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
-
+session_start(); 
+if (!isset($_SESSION['email'])) {
+  $_SESSION['msg'] = "You must log in first";
+  header('location: ../auth/login.php');
+}
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION['email']);
+  header("location:../auth/login.php");
+}
+header('location: dashboard/home.php')
 ?>
 <html lang="en">
 <head>
