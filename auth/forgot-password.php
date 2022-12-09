@@ -1,17 +1,19 @@
 <?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('../require/config.php');
 include_once("../require/sql.php");
 include('../scripts/auth/server.php');
 $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <title><?= $getsettings['appname'];?> | Register</title>
+  <title><?= $getsettings['appname'];?> | Reset password</title>
   <!-- Favicon -->
   <link href="<?= $getsettings['applogo'];?>" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -22,17 +24,18 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
   <!-- CSS Files -->
   <link href="../assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 </head>
-
 <body class="bg-default">
-  <div class="main-content">
-   <?php require("../require/auth/navbar.php"); ?>
+<div class="main-content">
+    <!-- Navbar -->
+    <?php require("../require/auth/navbar.php"); ?>
+    <!-- Header -->
     <div class="header bg-gradient-primary py-7 py-lg-8">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
               <h1 class="text-white">Welcome to <?= $getsettings['appname'];?>!</h1>
-              <p class="text-lead text-light">Please register to acces our WebHosting Dashboard</p>
+              <p class="text-lead text-light">Please login to acces our WebHosting Dashboard</p>
             </div>
           </div>
         </div>
@@ -50,61 +53,31 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
           <div class="card bg-secondary shadow border-0">
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <h3>Fill in with your credentials</h3>
+                <h3>Enter your email address to restart your password</h3>
                 &NonBreakingSpace;
                 <?php include('../scripts/auth/errors.php'); ?>
               </div>
-              <form method="POST">
-                <div class="form-group mb-3">     
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Username" id="username" name="username" type="text">
-                    </div>
-                </div>
-                <div class="form-group mb-3">     
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="First name" id="name_first" name="name_first" type="text">
-                    </div>
-                </div>
-                <div class="form-group mb-3">     
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-users"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Last name" id="name_last" name="name_last" type="text">
-                    </div>
-                </div>
-                <div class="form-group mb-3">       
+              <form role="form" method="POST">
+                <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" id="email" name="email" type="email">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Password" id="password" name="password" type="password">
+                    <input class="form-control" placeholder="Email"  name="email" id="email" type="email">
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" name="reg_user" id="reg_user" class="btn btn-primary my-4">Register</button>
+                  <button type="submit" name="login_user" id="login_user" class="btn btn-primary my-4">Reset password</button>
                 </div>
               </form>
             </div>
           </div>
           <div class="row mt-3">
-        
-            <div class="col-12 text-center">
-              <a href="login.php" class="text-light"><small>Login in your account</small></a>
+            <div class="col-6">
+              <a href="login.php" class="text-light"><small>Login</small></a>
+            </div>
+            <div class="col-6 text-right">
+              <a href="register.php" class="text-light"><small>Register</small></a>
             </div>
           </div>
         </div>
@@ -126,5 +99,4 @@ $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
       });
   </script>
 </body>
-
 </html>

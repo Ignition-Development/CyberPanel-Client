@@ -11,6 +11,7 @@ if (isset($_GET['logout'])) {
     header("location:../auth/login.php");
     die;
 }
+
 include('../require/config.php');
 include_once("../require/sql.php");
 $getsettings = $dbconn->query("SELECT * FROM settings")->fetch_array();
@@ -74,8 +75,20 @@ $userdb = $dbconn->query("SELECT * FROM users WHERE email='". $_SESSION['email']
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
-            <?php
-            require("navbar.php");
+          <?php
+            require("../require/navbar.php");
+            foreach ($_NAVBAR as $item) {
+                ?>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $item["link"] ?>">
+                            <i class="<?= $item["icon"] ?> text-primary"></i>
+                            <span class="nav-link-text"><?= $item["text"] ?></span>
+                        </a>
+                    </li>
+                </ul>
+                <?php
+            }
             ?>
           <!-- Divider -->
           <hr class="my-3">

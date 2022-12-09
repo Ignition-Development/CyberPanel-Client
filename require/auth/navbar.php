@@ -1,7 +1,7 @@
 <?php ?>
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
   <div class="container px-4">
-    <a class="navbar-brand" href="">
+    <a class="navbar-brand" href="<?= $getsettings['appurl'];?>">
       <img src="<?= $getsettings['applogo'];?>" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a href="">
+            <a href="<?= $getsettings['appurl'];?>">
               <img src="<?= $getsettings['applogo'];?>">
             </a>
           </div>
@@ -27,21 +27,27 @@
       <!-- Navbar items -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="">
+          <a class="nav-link nav-link-icon" href="<?= $getsettings['websitelink'];?>">
             <i class="ni ni-planet"></i>
-            <span class="nav-link-inner--text">Dashboard</span>
+            <span class="nav-link-inner--text">Website</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="register.php">
-            <i class="ni ni-circle-08"></i>
-            <span class="nav-link-inner--text">Register</span>
+          <a class="nav-link nav-link-icon" href="<?= $getsettings['discordinvite'];?>">
+            <i class="bi bi-discord"></i>
+            <span class="nav-link-inner--text">Discord</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="login.php">
-            <i class="ni ni-key-25"></i>
-            <span class="nav-link-inner--text">Login</span>
+          <a class="nav-link nav-link-icon" href="<?= $getsettings['statuspage'];?>">
+            <i class="bi bi-hdd-stack-fill"></i>
+            <span class="nav-link-inner--text">Status</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" href="<?= $getsettings['webpanel'];?>">
+            <i class="bi bi-controller"></i>
+            <span class="nav-link-inner--text">WebPanel</span>
           </a>
         </li>
       </ul>

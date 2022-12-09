@@ -24,6 +24,7 @@ if (isset($_GET['logout'])) {
   header("location:../auth/login.php");
 }
 header('location: dashboard/home.php')
+
 ?>
 <html lang="en">
 <head>
