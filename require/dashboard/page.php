@@ -153,35 +153,9 @@ $userdb = $dbconn->query("SELECT * FROM users WHERE email='". $_SESSION['email']
               </a>
             </li>
             <li class="nav-item" style="color: white;">
-            12 Coins
+            12 <?= $getsettings['currencyname'] ?>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-ungroup"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default  dropdown-menu-right ">
-                <div class="row shortcuts px-4">
-                  <a href="<?= $getsettings['webpanel'] ?>" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-red">
-                      <i class="fas fa-gamepad"></i>
-                    </span>
-                    <small>Web panel</small>
-                  </a>
-                  <a href="<?= $getsettings['websitelink'] ?>" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
-                      <i class="fas fa-home"></i>
-                    </span>
-                    <small>Website</small>
-                  </a>
-                  <a href="<?= $getsettings['statuspage'] ?>" class="col-4 shortcut-item">
-                    <span class="shortcut-media avatar rounded-circle bg-gradient-info">
-                      <i class="fas fa-signal"></i>
-                    </span>
-                    <small>Status</small>
-                  </a>
-                </div>
-              </div>
-            </li>
+            &nbsp;
           </ul>
           <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
             <li class="nav-item dropdown">
@@ -209,29 +183,4 @@ $userdb = $dbconn->query("SELECT * FROM users WHERE email='". $_SESSION['email']
         </div>
       </div>
     </nav>
-
-<!--- MODALS -->
-<div class="modal fade" id="modal-logout" tabindex="-1" role="dialog" aria-labelledby="modal-logout" aria-hidden="true">
-    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-        <div class="modal-content bg-gradient-danger">
-            <div class="modal-header">
-                <h6 class="modal-title" id="modal-title-notification">We need your confirmation</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="py-3 text-center">
-                    <i class="ni ni-user-run"></i>
-                    <h4 class="heading mt-4">Are you sure?</h4>
-                    <p>This will change your password. You'll be logged out of every device your account is connected to.</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="/auth/logout" class="btn btn-white">Logout</a>
-                <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!--- BEGINNING OF THE CONTENT -->
