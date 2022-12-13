@@ -1,7 +1,7 @@
 <?php
-
-
 require("../require/dashboard/page.php");
+$cydb = mysqli_connect($getsettings["cydb_host"]. ':'. $getsettings["cydb_port"], $getsettings["cydb_user"], $getsettings["cydb_pass"], $getsettings["cydb_name"]);
+$cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmail='". $userdb['email'] ."'")->fetch_array();
 
 ?>
 <div class="header pb-6 d-flex align-items-center"
@@ -209,11 +209,10 @@ require("../require/dashboard/page.php");
                                 ?>
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Website name</th>
+                                    <th scope="col">Website domain</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">CPU</th>
-                                    <th scope="col">RAM</th>
-                                    <th scope="col">Disk</th>
+                                    <th scope="col">PhP version</th>
+                                    <th scope="col">SSL Status</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -223,26 +222,50 @@ require("../require/dashboard/page.php");
                                     <div class="media align-items-center">
                                         <div class="media-body">
                                             <span class="name mb-0 text-sm">
-                                                MythicalNodes
+                                                <?= $cydbw['domain'] ?>
                                             </span>
                                         </div>
                                     </div>
                                 </th>
                                 <td>
-                                    Dead
+                                    <?php 
+                                    if ($cydbw['state'] == "1")
+                                    {
+                                        echo "Online";
+                                    }
+                                    else
+                                    {
+                                        echo "Suspended";
+                                    }
+                                    ?>
                                 </td>
                                 <td>
-                                    100%
+                                    <?= $cydbw['phpSelection'] ?>
                                 </td>
                                 <td>
-                                    1024MB
+                                    <?php
+                                    if ($cydbw['ssl'] == "1")
+                                    {
+                                        echo "SSL Vaild";
+                                    }
+                                    else
+                                    {
+                                        echo "No SSL";
+                                    }
+                                    ?>
                                 </td>
                                 <td>
-                                    1024MB
-                                </td>
-                                <td>
-                                    <a href="goggle.com" class="btn btn-primary btn-sm" data-trigger="hover" data-container="body" data-toggle="popover" data-color="default" data-placement="left" data-content="Open in the game panel">Open Website</a>
-                                    <a href="/server/manage?id=1" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="<?php 
+                                    if ($cydbw['ssl'] == "1")
+                                    {
+                                        $openwb = "https://";
+                                    }
+                                    else
+                                    {
+                                        $openwb = "http://";
+                                    }
+                                    echo $openwb . $cydbw['domain'];
+                                    ?>" class="btn btn-primary btn-sm" data-trigger="hover" data-container="body" data-toggle="popover" data-color="default" data-placement="left" data-content="Open in the game panel">Open Website</a>
                                     <a href="/server/delete?server=1"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button></a>
                                 </td>
                             </tr>

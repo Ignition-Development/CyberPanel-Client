@@ -153,7 +153,7 @@ $userdb = $dbconn->query("SELECT * FROM users WHERE email='". $_SESSION['email']
               </a>
             </li>
             <li class="nav-item" style="color: white;">
-            12 <?= $getsettings['currencyname'] ?>
+             <?= $userdb['coins'] ?> <?= $getsettings['currencyname'] ?>
             </li>
             &nbsp;
           </ul>
