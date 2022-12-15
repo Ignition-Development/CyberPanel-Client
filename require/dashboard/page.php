@@ -44,6 +44,7 @@ $userdb = $dbconn->query("SELECT * FROM users WHERE email='". $_SESSION['email']
   <meta name="theme-color" content="#335BFF">
   <meta name="keywords" content="<?= $getsettings['keywords'] ?>">
   <meta name="generator" content="Ignition-Development - <?= $getsettings['appname'] ?>">
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link rel="stylesheet" href="../assets/dash/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">

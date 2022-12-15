@@ -2,6 +2,8 @@
 require("../require/dashboard/page.php");
 $cydb = mysqli_connect($getsettings["cydb_host"]. ':'. $getsettings["cydb_port"], $getsettings["cydb_user"], $getsettings["cydb_pass"], $getsettings["cydb_name"]);
 $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmail='". $userdb['email'] ."'")->fetch_array();
+$cydbpln = $cydb->query("SELECT * FROM `packages_package` WHERE packageName='". $userdb['plan'] ."'")->fetch_array();
+
 
 ?>
 <div class="header pb-6 d-flex align-items-center"
@@ -30,7 +32,7 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">Domains</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">1/1</span>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $cydbpln['allowedDomains'] ?></span>
                             <br /><br />
                         </div>
                         <div class="col-auto">
@@ -49,7 +51,7 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">FTP Accounts</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">1/1</span>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $cydbpln['ftpAccounts'] ?></span>
                             <br /><br />
                         </div>
                         <div class="col-auto">
@@ -68,7 +70,7 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">Databases</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">1/1</span>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $cydbpln['dataBases'] ?></span>
 
                             <br /><br />
                         </div>
@@ -88,7 +90,7 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">Emails accounts</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">2/2</span>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $cydbpln['emailAccounts'] ?></span>
                             <br /><br />
                         </div>
                         <div class="col-auto">
@@ -112,8 +114,8 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0 text-white">Coins</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">12</span>
+                            <h5 class="card-title text-uppercase text-muted mb-0 text-white"><?= $getsettings['currencyname'] ?></h5>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $userdb['coins'] ?> </span>
                             <br /><br />
                         </div>
                         <div class="col-auto">
@@ -132,7 +134,7 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">Disk Space</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">1024/2048 MB</span>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $cydbpln['diskSpace'] ?></span>
 
                             <br /><br />
                         </div>
@@ -152,7 +154,7 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">Bandwidth</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">1024/2048 MB</span>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $cydbpln['bandwidth'] ?></span>
 
                             <br /><br />
                         </div>
@@ -172,7 +174,7 @@ $cydbw = $cydb->query("SELECT * FROM `websiteFunctions_websites` WHERE adminEmai
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0 text-white">Current plan</h5>
-                            <span class="h2 font-weight-bold mb-0 text-white">Free</span>
+                            <span class="h2 font-weight-bold mb-0 text-white"><?= $userdb['plan'] ?></span>
                             <br /><br />
                         </div>
                         <div class="col-auto">
