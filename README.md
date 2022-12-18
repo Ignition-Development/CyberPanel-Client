@@ -4,17 +4,18 @@ THE CLIENT ZONE IS NOT DONE YET DO NOT USE
 Theses features are the basic ones. In the future, more features are likely to come.
 | Feature               | Available |
 |-----------------------|-----------|
-| Server creation       |  X        |
-| Server editing        |  X        |
-| Server deletion       |  X        |
+| Website creation      |  X        |
+| Website editing       |  X        |
+| Website deletion      |  X        |
 | Login                 | ✔️        |
-| Earning coins         |  X         |
-| Resources shop        | x         |
-| Full customization    | x         |
-| Full navbar control   | ✔️         |
-| Full login control    | ✔️         |
-| Add & Remove Coins    | X         |
-| AFK Page              | X         |
+| Earning coins         |  X        |
+| Resources shop        |  X        |
+| Full customization    |  X        |
+| Full navbar control   | ✔️        |
+| Full login control    | ✔️        |
+| Add & Remove Coins    |  X        |
+| AFK Page              |  X        |
+| Redeem Page           |  X        |
 
 This is a free client area for [CyberPanel](https://cyberpanel.net/)
 
